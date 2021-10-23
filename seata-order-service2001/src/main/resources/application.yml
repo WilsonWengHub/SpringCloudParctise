@@ -1,0 +1,41 @@
+server:
+  port: 2001
+spring:
+  application:
+    name: seata-order-service
+  cloud:
+    alibaba:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: 84bb1b12-830e-42e7-a2e4-2ed6c3436114
+        group: SEATA_GROUP
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/seata_order
+    username: root
+    password: root
+feign:
+  hystrix:
+    enabled: true
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group    #此处配置自定义的seata事务分组名称
+  enable-auto-data-source-proxy: true    #开启数据库代理
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: localhost:8848
+      namespace: 84bb1b12-830e-42e7-a2e4-2ed6c3436114
+  config:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848 #配置中心nacos地址
+      group: SEATA_GROUP #分组名 对应服务器端配置
+      namespace: 84bb1b12-830e-42e7-a2e4-2ed6c3436114  #命名空间 对应nacos中配置中心seata
+

@@ -1,0 +1,18 @@
+server:
+  port: 94
+spring:
+  application:
+    name: cloudalibaba-consumer-order94
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8858
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

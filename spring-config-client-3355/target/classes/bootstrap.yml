@@ -1,0 +1,23 @@
+server:
+  port: 3355
+spring:
+  cloud:
+    config:
+      uri: http://localhost:3344
+      label: master
+      name: config
+      profile: dev   #相当于去寻找 http://localhost:3344/master/config-dev.yml
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+
+#      暴露端点。使其更新配置。 和注解@RefreshScope配合使用(controller中)。
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,9 @@
+server:
+  port: 93
+spring:
+  application:
+    name: cloudalibaba-consumer-93
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848

@@ -1,0 +1,31 @@
+server:
+  port: 92
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+    register-with-eureka: true
+
+#Fegin内置的Ribbon默认设置了请求超时时长，可以通过手动配置来修改这个超时时长：
+#ribbon:
+#  ConnectTimeout: 2000 # 建立链接的超时时长(默认)
+#  ReadTimeout: 5000 # 读取响应数据超时时长(默认)
+
+##Feign默认也有对Hystrix的集成: 开启熔断
+#feign:
+#  hystrix:
+#    enabled: true
+spring:
+  application:
+    name: consumerFegin92
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 20000
+        read-timeout: 20000
+  hystrix:
+    enabled: true
+
+
